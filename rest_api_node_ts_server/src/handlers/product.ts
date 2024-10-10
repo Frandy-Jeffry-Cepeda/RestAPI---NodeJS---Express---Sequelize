@@ -39,7 +39,7 @@ export const createProduct = async (req : Request, res : Response) => {
     try {
 
         const product = await Product.create(req.body)
-        res.json({data: product})
+        res.status(201).json({data: product})
 
     } catch (error) {
         console.log(error)
@@ -74,7 +74,7 @@ export const updateAvailability = async (req : Request, res: Response) => {
     const product = await Product.findByPk(id)
 
     if(!product) {
-        res.status(404).json({
+        res.status(400).json({
         error: "Producto no encontrado"
      })
         return;
