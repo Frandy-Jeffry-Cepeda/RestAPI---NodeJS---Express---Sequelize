@@ -31,8 +31,8 @@ router.post('/',
 
 router.put('/:id', 
     
-    body('name')
-    .notEmpty().withMessage('El nombre de Producto no puede ir vacio'),
+    param('id').isInt().withMessage("Id no válido"),
+    body('name').notEmpty().withMessage('El nombre de Producto no puede ir vacio'),
 
     body('price')
     .isNumeric().withMessage('Valor no válido')
