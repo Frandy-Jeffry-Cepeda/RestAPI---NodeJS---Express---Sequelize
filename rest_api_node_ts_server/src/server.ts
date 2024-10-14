@@ -1,5 +1,7 @@
 import express from 'express'
 import router from './router'
+import swaggerUi  from 'swagger-ui-express'
+import swaggerSpec, { swaggerUiOptions } from './config/swagger'
 import db from './config/db'
 
 // Conectar a base de datos
@@ -27,8 +29,7 @@ server.use(express.json())
 
 server.use('/api/products', router)
 
-server.get('/api', (req, res) => {
-    res.json({msg: 'Desde API'})
-})
+// Docs
+server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions) )
 
 export default server
